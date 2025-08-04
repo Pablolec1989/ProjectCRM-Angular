@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, ChangeDetectionStrategy, inject, computed } from "@angular/core";
 import { AreaService } from "../area.service";
-import { AreaDTO } from "../interfaces/interface.area";
+import { AreaDTO } from '../interfaces/interface.area';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from "@angular/material/button";
 import { RouterLink } from "@angular/router";
@@ -23,14 +23,28 @@ import { RouterLink } from "@angular/router";
 export class AreaListComponent{
 
   areaService = inject(AreaService);
-  public columnasAMostrar: string[] = ["nombre","acciones"];
+  columnasAMostrar: string[] = ["nombre","acciones"];
+  areas?:AreaDTO[] = [];
 
-  public areas = computed<AreaDTO[]>(() => {
-    return this.areaService.areas();
+  cargarAreas(){
+    this.areaService.GetAllArea().subscribe(areas => {
+      this.areas = areas;
   });
-
+  }
 
   constructor() {
+    this.cargarAreas();
+    };
+
+
+  eliminar(id: string){
+    this.areaService.DeleteArea(id)
+    .subscribe(()=>{
+      this.cargarAreas();
+    })
+
+
+
   }
 
 }

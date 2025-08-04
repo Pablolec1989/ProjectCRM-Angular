@@ -11,19 +11,29 @@ export class AreaService {
   areas = signal<AreaDTO[]>([]);
 
   constructor() {
-    this.GetAllAreas();
+    this.GetAllArea();
   }
 
-  GetAllAreas() {
-    return this.http.get<AreaDTO[]>(this.urlBase).subscribe((areas: AreaDTO[]) => {
-      this.areas.set(areas);
-      console.log('Areas obtenidas:', areas);
-    });
+  public GetById(id: string) {
+    return this.http.get<AreaDTO>(`${this.urlBase}/${id}`);
   }
 
-  PostAreas(area: AreaDTO){
+  public GetAllArea() {
+    return this.http.get<AreaDTO[]>(this.urlBase);
+  };
+
+  public PostArea(area: AreaDTO){
     return this.http.post<AreaDTO>(this.urlBase, area);
   }
+
+  public PutAreas(id:string, area: AreaDTO) {
+    return this.http.put<AreaDTO>(`${this.urlBase}/${id}`, area)
+  }
+
+  public DeleteArea(id: string){
+    return this.http.delete(`${this.urlBase}/${id}`)
+  }
+
 
 
 

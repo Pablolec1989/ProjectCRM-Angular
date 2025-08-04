@@ -1,12 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input, input, OnInit } from '@angular/core';
+import { AreaService } from '../area.service';
+import { AreaDTO } from '../interfaces/interface.area';
+import { FormularioAreaComponent } from "../formulario-area/formulario-area.component";
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-area.update.component',
+  selector: 'area-update',
   standalone: true,
-  imports: [],
+  imports: [FormularioAreaComponent],
   templateUrl: './area.update.component.html',
-  styleUrl: './area.update.component.css'
 })
-export class AreaUpdateComponent {
+export class AreaUpdateComponent implements OnInit {
+
+  router = inject(Router);
+
+  @Input()
+  id!: string;
+
+  areaService = inject(AreaService);
+  modelo?:AreaDTO;
+
+  ngOnInit(): void {
+    this.areaService.GetById(this.id).subscribe(area =>{
+      this.modelo = area;
+    })
+  }
+
+  guardarCambios(area: AreaDTO) {
+    this.areaService.PutAreas(this.id, area).subscribe(()=>{
+      this.router.navigate(['/areas'])
+
+    })
+  }
+
+
+
 
 }
