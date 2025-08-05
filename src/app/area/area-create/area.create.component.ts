@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { AreaService } from '../area.service';
 import { AreaDTO } from '../interfaces/interface.area';
-import { FormularioAreaComponent } from "../formulario-area/formulario-area.component";
+import { FormularioAreaComponent } from "../area-form/formulario-area.component";
 
 @Component({
   selector: 'area-create',

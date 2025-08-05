@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
 import AreaComponent from './area/area.component';
-import { AreaCreateComponent } from './area/area.create.component/area.create.component';
-import { AreaUpdateComponent } from './area/area.update.component/area.update.component';
+import { AreaCreateComponent } from './area/area-create/area.create.component';
+import { AreaUpdateComponent } from './area/area-update/area.update.component';
+import { MenuComponent } from './menu/menu.component';
 
 export const routes: Routes = [
 
@@ -13,6 +14,6 @@ export const routes: Routes = [
   },
   {
     path:'areas/editar/:id', component: AreaUpdateComponent
-  }
+  },
 
 ];

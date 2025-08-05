@@ -1,6 +1,6 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AreaListComponent } from "./area.list.component/area.list.component";
+import { AreaListComponent } from "./area-list/area.list.component";
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 
