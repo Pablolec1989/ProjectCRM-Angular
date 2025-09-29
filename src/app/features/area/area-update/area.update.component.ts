@@ -1,7 +1,7 @@
 import { Component, inject, Input, input, OnInit } from '@angular/core';
 import { AreaService } from '../area.service';
-import { AreaDTO } from '../interfaces/interface.area';
-import { FormularioAreaComponent } from "../area-form/formulario-area.component";
+import { AreaDTO } from '../../../models/areaDTO.model';
+import { FormularioAreaComponent } from '../area-form/formulario-area.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,29 +11,20 @@ import { Router } from '@angular/router';
   templateUrl: './area.update.component.html',
 })
 export class AreaUpdateComponent implements OnInit {
-
   router = inject(Router);
 
   @Input()
   id!: string;
 
   areaService = inject(AreaService);
-  modelo?:AreaDTO;
+  modelo?: AreaDTO;
 
   ngOnInit(): void {
-    this.areaService.GetById(this.id).subscribe(area =>{
-      this.modelo = area;
-    })
+    this.areaService.GetById(this.id);
   }
 
   guardarCambios(area: AreaDTO) {
-    this.areaService.PutAreas(this.id, area).subscribe(()=>{
-      this.router.navigate(['/areas'])
-
-    })
+    this.areaService.PutArea(this.id, area);
+    this.router.navigate(['/areas']);
   }
-
-
-
-
 }
