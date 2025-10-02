@@ -1,0 +1,12 @@
+<button mat-flat-button (click)="agregarTipoDireccion()">Crear tipo de direccion</button>
+
+<app-listado-generico [listado]=" tiposDirecciones">
+  <ng-container contenido>
+    @for(tipoDireccion of tiposDirecciones; track $index) {
+    <div>
+      <p>{{$index+1}} - {{tipoDireccion.nombre}}</p>
+    </div>
+    }
+
+  </ng-container>
+</app-listado-generico>

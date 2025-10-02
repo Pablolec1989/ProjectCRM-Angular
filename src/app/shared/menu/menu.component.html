@@ -1,0 +1,23 @@
+<mat-toolbar>
+
+  <span>
+    <a mat-button routerLink=""><mat-icon>menu</mat-icon>Dashboard</a>
+  </span>
+  <div>
+    <a mat-button routerLink="areas" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Areas</a>
+  </div>
+  <div>
+    <a mat-button routerLink="areas/listado" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Areas
+      con detalle</a>
+  </div>
+  <div>
+    <a mat-button routerLink="tipoDireccion" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Tipo de
+      direcciones</a>
+  </div>
+  <div>
+    <a mat-button routerLink="tipoDireccion/listado" routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact:true}">Tipo de direcciones
+      con detalle</a>
+  </div>
+
+</mat-toolbar>

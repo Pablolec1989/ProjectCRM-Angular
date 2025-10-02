@@ -1,0 +1,13 @@
+<button mat-flat-button (click)="agregarArea()">Crear Area</button>
+
+<app-listado-generico [listado]="listadoAreas">
+
+  <ng-container contenido>
+    @for (area of listadoAreas; track $index) {
+    <div class="contenedor area">
+      <p>{{$index+1}} - {{ area.nombre }}</p>
+    </div>
+    }
+  </ng-container>
+
+</app-listado-generico>
