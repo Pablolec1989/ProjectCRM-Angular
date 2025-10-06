@@ -29,7 +29,7 @@ export class EditarTipoDireccionComponent implements OnInit
     });
   }
 
-    guardarCambios(tipoDireccion:tipoDireccionRequestDTO){
+    guardarCambios(tipoDireccion: tipoDireccionRequestDTO) {
       this.tipoDireccionService.putTipoDireccion(this.id, tipoDireccion).subscribe({
         next: () => {
           this.router.navigate(['/tipoDireccion/listado']);

@@ -1,12 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from "@angular/material/input";
-import { areaRequestDTO } from '../models/areaRequestDTO';
 import { AreaService } from '../area.service';
 import { FormAreaComponent } from "../form-area/form-area.component";
+import { GENERIC_SERVICE_TOKEN } from '../../../shared/components/povider/provider';
+import { CrearGenericoComponent } from '../../../shared/components/crear-generico/crear-generico.component';
 
 @Component({
   selector: 'app-crear-area',
@@ -16,24 +16,15 @@ import { FormAreaComponent } from "../form-area/form-area.component";
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
-    FormAreaComponent
+    FormAreaComponent,
+    CrearGenericoComponent
 ],
   templateUrl: './crear-area.component.html',
+  providers: [{
+    provide: GENERIC_SERVICE_TOKEN, useClass: AreaService
+  }]
 })
 export class CrearAreaComponent
 {
-  titulo = 'Crear Área';
-  private router = inject(Router);
-  private readonly serviceArea = inject(AreaService);
-
-  guardarCambios(area: areaRequestDTO) {
-    this.serviceArea.postArea(area).subscribe({
-      next: () => {
-        this.router.navigate(['/areas/listado']);
-      },
-      error: (err) => {
-        console.error('No se pudo crear el area', err);
-      }
-    });
-  }
+  formularioArea = FormAreaComponent;
 }

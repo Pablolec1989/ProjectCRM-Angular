@@ -23,7 +23,7 @@ export class ListadoAreaComponent implements OnInit
   listadoAreas: areaDTO[] = [];
 
   ngOnInit(): void {
-    this.areaService.getAllAreas().subscribe({
+    this.areaService.getAll().subscribe({
       next: (areas) => {
         this.listadoAreas = areas;
       },

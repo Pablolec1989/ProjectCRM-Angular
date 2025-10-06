@@ -5,7 +5,6 @@ import { ListadoGenericoComponent } from "src/app/shared/components/listado-gene
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { TipoDireccionService } from '../tipoDireccion.service';
 
 @Component({

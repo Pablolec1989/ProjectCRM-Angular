@@ -23,13 +23,13 @@ export class EditarAreaComponent {
   area: areaDTO | undefined;
 
   ngOnInit(): void {
-    this.areaService.getAreaById(this.id).subscribe(area => {
+    this.areaService.getById(this.id).subscribe(area => {
       this.area = area;
     })
   }
 
   guardarCambios(area: areaRequestDTO) {
-    this.areaService.putArea(this.id, area).subscribe({
+    this.areaService.put(this.id, area).subscribe({
       next: () => {
         this.router.navigate(['/areas']);
       },
