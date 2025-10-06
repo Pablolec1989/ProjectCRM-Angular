@@ -6,12 +6,11 @@ import { GENERIC_SERVICE_TOKEN } from "../povider/provider";
 
 
 @Component({
-  selector: 'app-crear-generico',
-  standalone: true,
-  imports: [
-    CommonModule,
-  ],
-  templateUrl: './crear-generico.component.html',
+    selector: 'app-crear-generico',
+    imports: [
+        CommonModule,
+    ],
+    templateUrl: './crear-generico.component.html'
 })
 export class CrearGenericoComponent<TDTO, TRequestDTO> implements AfterViewInit {
   ngAfterViewInit(): void {

@@ -7,14 +7,13 @@ import { Router } from '@angular/router';
 import { tipoDireccionRequestDTO } from '../models/tipoDireccionRequestDTO.model';
 
 @Component({
-  selector: 'app-editar-tipo-direccion',
-  standalone: true,
-  imports: [
-    CommonModule,
-    TipoDireccionFormComponent
-],
-  templateUrl: './editar-tipoDireccion.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-editar-tipo-direccion',
+    imports: [
+        CommonModule,
+        TipoDireccionFormComponent
+    ],
+    templateUrl: './editar-tipoDireccion.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditarTipoDireccionComponent implements OnInit
 {

@@ -7,14 +7,13 @@ import { AreaService } from "../area.service";
 import { areaDTO } from "../models/areaDTO.model";
 
 @Component({
-  selector: 'app-listado-area',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ListadoGenericoComponent,
-    MatButtonModule
-],
-  templateUrl: './listado-area.component.html',
+    selector: 'app-listado-area',
+    imports: [
+        CommonModule,
+        ListadoGenericoComponent,
+        MatButtonModule
+    ],
+    templateUrl: './listado-area.component.html'
 })
 export class ListadoAreaComponent implements OnInit
 {

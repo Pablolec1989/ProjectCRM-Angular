@@ -6,11 +6,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
 
 @Component({
-  selector: 'app-menu',
-  standalone: true,
-  imports: [MatToolbarModule, MatIconModule, MatButtonModule, RouterLink, RouterLinkActive],
-  templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css'
+    selector: 'app-menu',
+    imports: [MatToolbarModule, MatIconModule, MatButtonModule, RouterLink, RouterLinkActive],
+    templateUrl: './menu.component.html',
+    styleUrl: './menu.component.css'
 })
 export class MenuComponent {
 

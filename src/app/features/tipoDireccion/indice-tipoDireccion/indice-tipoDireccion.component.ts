@@ -8,16 +8,15 @@ import { RouterLink } from '@angular/router';
 import { TipoDireccionService } from '../tipoDireccion.service';
 
 @Component({
-  selector: 'app-indice-tipo-direccion',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ListadoGenericoComponent,
-    MatButtonModule,
-    RouterLink,
-    MatTableModule
-],
-  templateUrl: './indice-tipoDireccion.component.html',
+    selector: 'app-indice-tipo-direccion',
+    imports: [
+        CommonModule,
+        ListadoGenericoComponent,
+        MatButtonModule,
+        RouterLink,
+        MatTableModule
+    ],
+    templateUrl: './indice-tipoDireccion.component.html'
 })
 export class IndiceTipoDireccionComponent implements OnInit {
 

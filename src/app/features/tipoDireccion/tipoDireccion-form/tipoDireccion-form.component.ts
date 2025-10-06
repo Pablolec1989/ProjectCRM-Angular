@@ -9,16 +9,15 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-tipo-direccion-form',
-  standalone: true,
-  imports: [
-    RouterLink,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatInputModule,
-],
-  templateUrl: './tipoDireccion-form.component.html',
+    selector: 'app-tipo-direccion-form',
+    imports: [
+        RouterLink,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatInputModule,
+    ],
+    templateUrl: './tipoDireccion-form.component.html'
 })
 export class TipoDireccionFormComponent implements OnInit{
   ngOnInit(): void {

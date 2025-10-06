@@ -9,18 +9,17 @@ import { IServicioCRUD } from '../../interfaces/IServiceBase';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-indice-generico',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ListadoGenericoComponent,
-    CommonModule,
-    ListadoGenericoComponent,
-    MatButtonModule,
-    RouterLink,
-    MatTableModule,
-  ],
-  templateUrl: './indice-generico.component.html',
+    selector: 'app-indice-generico',
+    imports: [
+        CommonModule,
+        ListadoGenericoComponent,
+        CommonModule,
+        ListadoGenericoComponent,
+        MatButtonModule,
+        RouterLink,
+        MatTableModule,
+    ],
+    templateUrl: './indice-generico.component.html'
 })
 export class IndiceGenericoComponent<TDTO, TRequestDTO> implements OnInit {
 

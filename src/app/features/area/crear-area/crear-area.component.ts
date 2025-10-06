@@ -9,20 +9,19 @@ import { GENERIC_SERVICE_TOKEN } from '../../../shared/components/povider/provid
 import { CrearGenericoComponent } from '../../../shared/components/crear-generico/crear-generico.component';
 
 @Component({
-  selector: 'app-crear-area',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatInputModule,
-    FormAreaComponent,
-    CrearGenericoComponent
-],
-  templateUrl: './crear-area.component.html',
-  providers: [{
-    provide: GENERIC_SERVICE_TOKEN, useClass: AreaService
-  }]
+    selector: 'app-crear-area',
+    imports: [
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatInputModule,
+        FormAreaComponent,
+        CrearGenericoComponent
+    ],
+    templateUrl: './crear-area.component.html',
+    providers: [{
+            provide: GENERIC_SERVICE_TOKEN, useClass: AreaService
+        }]
 })
 export class CrearAreaComponent
 {

@@ -7,13 +7,12 @@ import { areaDTO } from '../models/areaDTO.model';
 import { areaRequestDTO } from '../models/areaRequestDTO';
 
 @Component({
-  selector: 'app-editar-area',
-  standalone: true,
-  imports: [
-    CommonModule,
-    FormAreaComponent
-],
-  templateUrl: './editar-area.component.html',
+    selector: 'app-editar-area',
+    imports: [
+        CommonModule,
+        FormAreaComponent
+    ],
+    templateUrl: './editar-area.component.html'
 })
 export class EditarAreaComponent {
 

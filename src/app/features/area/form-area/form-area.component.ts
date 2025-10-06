@@ -9,16 +9,15 @@ import { areaRequestDTO } from '../models/areaRequestDTO';
 import { areaDTO } from '../models/areaDTO.model';
 
 @Component({
-  selector: 'app-form-area',
-  standalone: true,
-  imports: [
-    RouterLink,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatInputModule,
-],
-  templateUrl: './form-area.component.html',
+    selector: 'app-form-area',
+    imports: [
+        RouterLink,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatInputModule,
+    ],
+    templateUrl: './form-area.component.html'
 })
 export class FormAreaComponent implements OnInit
 {

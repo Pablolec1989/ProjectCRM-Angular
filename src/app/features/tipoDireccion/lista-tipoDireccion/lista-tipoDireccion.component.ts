@@ -7,14 +7,13 @@ import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-lista-tipo-direccion',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ListadoGenericoComponent,
-    MatButtonModule
-],
-  templateUrl: './lista-tipoDireccion.component.html',
+    selector: 'app-lista-tipo-direccion',
+    imports: [
+        CommonModule,
+        ListadoGenericoComponent,
+        MatButtonModule
+    ],
+    templateUrl: './lista-tipoDireccion.component.html'
 })
 export class ListaTipoDireccionComponent implements OnInit
 {

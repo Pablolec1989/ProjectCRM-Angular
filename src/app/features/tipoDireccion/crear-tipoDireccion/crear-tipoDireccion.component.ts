@@ -6,13 +6,12 @@ import { TipoDireccionService } from '../tipoDireccion.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-crear-tipo-direccion',
-  standalone: true,
-  imports: [
-    CommonModule,
-    TipoDireccionFormComponent
-],
-  templateUrl: './crear-tipoDireccion.component.html',
+    selector: 'app-crear-tipo-direccion',
+    imports: [
+        CommonModule,
+        TipoDireccionFormComponent
+    ],
+    templateUrl: './crear-tipoDireccion.component.html'
 })
 export class CrearTipoDireccionComponent
 {
