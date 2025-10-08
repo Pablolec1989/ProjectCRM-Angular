@@ -11,6 +11,10 @@ import { ListaCondicionIvaComponent } from './features/condicionIva/lista-condic
 import { IndiceCondicionIvaComponent } from './features/condicionIva/indice-condicionIva/indice-condicionIva.component';
 import { CrearCondicionIvaComponent } from './features/condicionIva/crear-condicionIva/crear-condicionIva.component';
 import { EditarCondicionIvaComponent } from './features/condicionIva/editar-condicionIva/editar-condicionIva.component';
+import { ListadoTipoTelefonoComponent } from './features/tipoTelefono/listado-tipoTelefono/listado-tipoTelefono.component';
+import { IndiceTipoTelefonoComponent } from './features/tipoTelefono/indice-tipoTelefono/indice-tipoTelefono.component';
+import { CrearTipoTelefonoComponent } from './features/tipoTelefono/crear-tipoTelefono/crear-tipoTelefono.component';
+import { EditarTipoTelefonoComponent } from './features/tipoTelefono/editar-tipoTelefono/editar-tipoTelefono.component';
 
 export const routes: Routes = [
   {
@@ -39,7 +43,15 @@ export const routes: Routes = [
       { path: 'crear', component: CrearCondicionIvaComponent },
       { path: 'editar/:id', component: EditarCondicionIvaComponent }
     ]
-
+  },
+  {
+    path: 'tiposTelefono',
+    children: [
+      {path: '', component: ListadoTipoTelefonoComponent},
+      {path: 'listado', component: IndiceTipoTelefonoComponent},
+      {path: 'crear', component: CrearTipoTelefonoComponent},
+      {path: 'editar/:id', component: EditarTipoTelefonoComponent},
+    ]
   }
 
 ];

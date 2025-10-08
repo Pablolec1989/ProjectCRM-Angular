@@ -5,6 +5,7 @@ import { IServiceBase } from "../../interfaces/IServiceBase";
 import { MostrarErroresComponent } from "../mostrar-errores/mostrar-errores.component";
 import { GENERIC_SERVICE_TOKEN } from "../povider/provider";
 import { extractErrors } from "../functions/extractErrorsFromAPI";
+import { TipoTelefonoService } from "src/app/features/tipoTelefono/tipoTelefono.service";
 
 @Component({
     selector: 'app-crear-generico',
@@ -12,7 +13,10 @@ import { extractErrors } from "../functions/extractErrorsFromAPI";
     CommonModule,
     MostrarErroresComponent
 ],
-    templateUrl: './crear-generico.component.html'
+  templateUrl: './crear-generico.component.html',
+  providers: [{
+      provide: GENERIC_SERVICE_TOKEN, useClass: TipoTelefonoService
+    }]
 })
 export class CrearGenericoComponent<TDTO, TRequestDTO> implements AfterViewInit {
   ngAfterViewInit(): void {
