@@ -1,39 +1,39 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, Output } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
-import { Router } from "@angular/router";
 import { ListadoGenericoComponent } from "src/app/shared/components/listado-generico/listado-generico.component";
 import { AreaService } from "../area.service";
-import { areaDTO } from "../models/areaDTO.model";
+import { areaDTO } from '../models/area.model';
+import { GENERIC_SERVICE_TOKEN } from "src/app/shared/components/povider/provider";
+import { extractErrors } from "src/app/shared/components/functions/extractErrorsFromAPI";
 
 @Component({
     selector: 'app-listado-area',
+    standalone: true,
     imports: [
         CommonModule,
         ListadoGenericoComponent,
         MatButtonModule
     ],
-    templateUrl: './listado-area.component.html'
+  templateUrl: './listado-area.component.html',
+  providers:[{provide: GENERIC_SERVICE_TOKEN, useClass: AreaService}]
 })
-export class ListadoAreaComponent implements OnInit
+export class ListadoAreaComponent
 {
-  private readonly areaService = inject(AreaService);
-  private readonly router = inject(Router);
-  listadoAreas: areaDTO[] = [];
+  private readonly tipoDireccionService = inject(AreaService)
+  areas: areaDTO[] = [];
+  errors: string[] = [];
 
   ngOnInit(): void {
-    this.areaService.getAll().subscribe({
+    this.tipoDireccionService.getAll().subscribe({
       next: (areas) => {
-        this.listadoAreas = areas;
+        this.areas = areas;
       },
       error: (err) => {
-        console.error('No se pudo obtener los datos', err);
+        this.errors = err;
+        extractErrors(err);
       }
     });
-  }
-
-  agregarArea(){
-    this.router.navigate(['/areas/crear']);
   }
 
 

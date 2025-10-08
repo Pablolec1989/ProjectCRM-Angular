@@ -7,9 +7,7 @@ import { IndiceGenericoComponent } from "src/app/shared/components/indice-generi
     selector: 'app-indice-area',
     imports: [IndiceGenericoComponent],
     templateUrl: './indice-area.component.html',
-    providers: [{
-            provide: GENERIC_SERVICE_TOKEN, useClass: AreaService
-        }]
+    providers: [{ provide: GENERIC_SERVICE_TOKEN, useClass: AreaService }]
 })
 export class IndiceAreaComponent
 {

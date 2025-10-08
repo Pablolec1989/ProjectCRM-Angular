@@ -1,43 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, Input, OnInit } from '@angular/core';
-import { TipoDireccionFormComponent } from "../tipoDireccion-form/tipoDireccion-form.component";
-import { tipoDireccionDTO } from '../models/tipoDireccionDTO.model';
 import { TipoDireccionService } from '../tipoDireccion.service';
-import { Router } from '@angular/router';
-import { tipoDireccionRequestDTO } from '../models/tipoDireccionRequestDTO.model';
+import { EditarGenericoComponent } from "src/app/shared/components/editar-generico/editar-generico.component";
+import { FormTipoDireccionComponent } from '../form-tipoDireccion/form-tipoDireccion.component';
+import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provider';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'app-editar-tipo-direccion',
     imports: [
-        CommonModule,
-        TipoDireccionFormComponent
-    ],
-    templateUrl: './editar-tipoDireccion.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    CommonModule,
+    EditarGenericoComponent
+],
+  templateUrl: './editar-tipoDireccion.component.html',
+    providers: [{ provide: GENERIC_SERVICE_TOKEN, useClass: TipoDireccionService }],
 })
-export class EditarTipoDireccionComponent implements OnInit
+export class EditarTipoDireccionComponent
 {
-  private readonly tipoDireccionService = inject(TipoDireccionService);
-  private readonly router = inject(Router);
-  tipoDireccion: tipoDireccionDTO | undefined;
   @Input() id!: string;
-
-  ngOnInit(): void {
-    this.tipoDireccionService.getTipoDireccionById(this.id).subscribe(tipoDireccion => {
-      this.tipoDireccion = tipoDireccion;
-    });
-  }
-
-    guardarCambios(tipoDireccion: tipoDireccionRequestDTO) {
-      this.tipoDireccionService.putTipoDireccion(this.id, tipoDireccion).subscribe({
-        next: () => {
-          this.router.navigate(['/tipoDireccion/listado']);
-        },
-        error: (err) => {
-          console.error('No se pudo editar el tipo de dirección', err);
-        }
-      });
-    }
-
-
+  formularioTipoDireccion = FormTipoDireccionComponent;
 }

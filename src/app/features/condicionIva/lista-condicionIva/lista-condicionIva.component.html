@@ -1,0 +1,10 @@
+<app-listado-generico [listado]="condicionIvaList">
+  <ng-container contenido>
+    @for(condicionIva of condicionIvaList; track $index) {
+    <div>
+      <p>{{$index+1}} - {{condicionIva.nombre}}</p>
+    </div>
+    }
+
+  </ng-container>
+</app-listado-generico>

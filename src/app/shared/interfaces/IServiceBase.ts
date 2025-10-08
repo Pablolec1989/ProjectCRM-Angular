@@ -1,6 +1,6 @@
 import { Observable } from "rxjs";
 
-export interface IServicioCRUD<TDTO, TRequestDTO>{
+export interface IServiceBase<TDTO, TRequestDTO>{
 
   getById(id: string): Observable<TDTO>;
   getAll(): Observable<TDTO[]>;

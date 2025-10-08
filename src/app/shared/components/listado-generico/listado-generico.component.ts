@@ -1,15 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IEntityBaseId } from '../../interfaces/IEntityBase';
 
 @Component({
-    selector: 'app-listado-generico',
-    imports: [
-        CommonModule,
-    ],
-    templateUrl: './listado-generico.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-listado-generico',
+  standalone: true,
+  imports: [
+    CommonModule,
+  ],
+  templateUrl: './listado-generico.component.html',
 })
-export class ListadoGenericoComponent
-{
-  @Input({required:true}) listado: any[] = [];
+
+export class ListadoGenericoComponent<TDTO extends IEntityBaseId> {
+
+  @Input({required:true}) listado: any;
 }

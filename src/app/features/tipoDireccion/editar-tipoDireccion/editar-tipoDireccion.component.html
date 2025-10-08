@@ -1,2 +1,2 @@
-<app-tipo-direccion-form *ngIf="tipoDireccion" [model]="tipoDireccion"
-  (posteoFormulario)="guardarCambios($event)"></app-tipo-direccion-form>
+<app-editar-generico titulo="Editar tipo de Dirección" rutaIndice="/tipoDireccion/listado" [id]="id"
+  [formulario]="formularioTipoDireccion"></app-editar-generico>

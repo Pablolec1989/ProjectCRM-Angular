@@ -1,6 +1,4 @@
-<button mat-flat-button (click)="agregarTipoDireccion()">Crear tipo de direccion</button>
-
-<app-listado-generico [listado]=" tiposDirecciones">
+<app-listado-generico [listado]="tiposDirecciones">
   <ng-container contenido>
     @for(tipoDireccion of tiposDirecciones; track $index) {
     <div>

@@ -1,15 +1,17 @@
 import { CommonModule } from "@angular/common";
 import { Component, AfterViewInit, Input, inject, ViewChild, ViewContainerRef, ComponentRef } from "@angular/core";
 import { Router } from "@angular/router";
-import { IServicioCRUD } from "../../interfaces/IServiceBase";
+import { IServiceBase } from "../../interfaces/IServiceBase";
+import { MostrarErroresComponent } from "../mostrar-errores/mostrar-errores.component";
 import { GENERIC_SERVICE_TOKEN } from "../povider/provider";
-
+import { extractErrors } from "../functions/extractErrorsFromAPI";
 
 @Component({
     selector: 'app-crear-generico',
     imports: [
-        CommonModule,
-    ],
+    CommonModule,
+    MostrarErroresComponent
+],
     templateUrl: './crear-generico.component.html'
 })
 export class CrearGenericoComponent<TDTO, TRequestDTO> implements AfterViewInit {
@@ -24,21 +26,22 @@ export class CrearGenericoComponent<TDTO, TRequestDTO> implements AfterViewInit 
   @Input({ required: true }) rutaIndice!: string;
   @Input({ required: true }) formulario!: any;
 
-  genericService = inject(GENERIC_SERVICE_TOKEN) as IServicioCRUD<TDTO, TRequestDTO>;
+  genericService = inject(GENERIC_SERVICE_TOKEN) as IServiceBase<TDTO, TRequestDTO>;
   private readonly router = inject(Router);
 
   @ViewChild('contenedorFormulario', { read: ViewContainerRef, static: true })
   contenedorFormulario!: ViewContainerRef;
-
   private componentRef!: ComponentRef<any>;
+  errores : string[] = [];
 
   guardarCambios(entity: TRequestDTO) {
     this.genericService.post(entity).subscribe({
       next: () => {
         this.router.navigate([this.rutaIndice]);
       },
-      error: (err) => {
-        console.error('No se pudo crear la entidad', err);
+      error: err => {
+        const errores = extractErrors(err);
+        this.errores = errores;
       }
     });
   }
