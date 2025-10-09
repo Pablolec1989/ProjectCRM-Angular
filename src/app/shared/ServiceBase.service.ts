@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceBase<TDTO, TRequestDTO> implements IServiceBase<TDTO, TRequestDTO> {
+export abstract class ServiceBase<TDTO, TRequestDTO> implements IServiceBase<TDTO, TRequestDTO> {
 
   private readonly http = inject(HttpClient);
   private fullBaseUrl: string;

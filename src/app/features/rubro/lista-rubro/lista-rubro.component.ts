@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ListadoGenericoComponent } from "src/app/shared/components/listado-generico/listado-generico.component";
 import { IServiceBase } from '../../../shared/interfaces/IServiceBase';
 import { RubroService } from '../rubro.service';
-import { extractErrors } from 'src/app/shared/components/functions/extractErrorsFromAPI';
+import { extractErrorsFromApi } from 'src/app/shared/components/functions/extractErrorsFromAPI';
 import { rubroDTO, rubroRequestDTO } from '../models/rubro.model';
 import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provider';
 
@@ -32,7 +32,7 @@ export class ListaRubroComponent implements OnInit {
       },
       error: (err) => {
         this.errors = err;
-        extractErrors(err);
+        extractErrorsFromApi(err);
       }
     })
   }

@@ -19,10 +19,18 @@ import { ListaRubroComponent } from './features/rubro/lista-rubro/lista-rubro.co
 import { IndiceRubroComponent } from './features/rubro/indice-rubro/indice-rubro.component';
 import { CrearRubroComponent } from './features/rubro/crear-rubro/crear-rubro.component';
 import { EditarRubroComponent } from './features/rubro/editar-rubro/editar-rubro.component';
+import { ListaAsuntoDeContactoComponent } from './features/asuntoDeContacto/lista-asuntoDeContacto/lista-asuntoDeContacto.component';
+import { IndiceAsuntoDeContactoComponent } from './features/asuntoDeContacto/indice-asuntoDeContacto/indice-asuntoDeContacto.component';
+import { CrearAsuntoDeContactoComponent } from './features/asuntoDeContacto/crear-asuntoDeContacto/crear-asuntoDeContacto.component';
+import { EditarAsuntoDeContactoComponent } from './features/asuntoDeContacto/editar-asuntoDeContacto/editar-asuntoDeContacto.component';
+import { ListaRolComponent } from './features/rol/lista-rol/lista-rol.component';
+import { CrearRolComponent } from './features/rol/crear-rol/crear-rol.component';
+import { EditarRolComponent } from './features/rol/editar-rol/editar-rol.component';
+import { IndiceRolComponent } from './features/rol/indice-rol/indice-rol.component';
 
 export const routes: Routes = [
   {
-    path: 'areas',
+    path: 'area',
     children: [
       { path: '', component: ListadoAreaComponent },
       { path: 'listado', component: IndiceAreaComponent },
@@ -58,12 +66,30 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'rubros',
+    path: 'rubro',
     children: [
       { path: '', component: ListaRubroComponent },
       { path: 'listado', component: IndiceRubroComponent },
       { path: 'crear', component: CrearRubroComponent },
       { path: 'editar/:id', component: EditarRubroComponent }
+    ]
+  },
+  {
+    path: 'asuntoDeContacto',
+    children: [
+      { path: '', component: ListaAsuntoDeContactoComponent },
+      { path: 'listado', component: IndiceAsuntoDeContactoComponent },
+      { path: 'crear', component: CrearAsuntoDeContactoComponent },
+      { path: 'editar/:id', component: EditarAsuntoDeContactoComponent }
+    ]
+  },
+  {
+    path: 'rol',
+    children: [
+      { path: '', component: ListaRolComponent },
+      { path: 'listado', component: IndiceRolComponent },
+      { path: 'crear', component: CrearRolComponent },
+      { path: 'editar/:id', component: EditarRolComponent }
     ]
   }
 

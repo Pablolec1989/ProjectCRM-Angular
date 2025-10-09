@@ -8,7 +8,7 @@ import { IServiceBase } from '../../interfaces/IServiceBase';
 import Swal from 'sweetalert2';
 import { MostrarErroresComponent } from "../mostrar-errores/mostrar-errores.component";
 import { GENERIC_SERVICE_TOKEN } from '../povider/provider';
-import { extractErrors } from '../functions/extractErrorsFromAPI';
+import { extractErrorsFromApi } from '../functions/extractErrorsFromAPI';
 import { TipoDireccionService } from 'src/app/features/tipoDireccion/tipoDireccion.service';
 
 @Component({
@@ -48,7 +48,7 @@ export class IndiceGenericoComponent<TDTO, TRequestDTO> {
         this.entities = data;
       },
       error: error => {
-        const errores = extractErrors(error);
+        const errores = extractErrorsFromApi(error);
         this.errores = errores;
       }
     })
