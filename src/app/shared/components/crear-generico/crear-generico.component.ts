@@ -14,9 +14,6 @@ import { TipoTelefonoService } from "src/app/features/tipoTelefono/tipoTelefono.
     MostrarErroresComponent
 ],
   templateUrl: './crear-generico.component.html',
-  providers: [{
-      provide: GENERIC_SERVICE_TOKEN, useClass: TipoTelefonoService
-    }]
 })
 export class CrearGenericoComponent<TDTO, TRequestDTO> implements AfterViewInit {
   ngAfterViewInit(): void {

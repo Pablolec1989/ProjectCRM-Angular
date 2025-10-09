@@ -1,0 +1,9 @@
+<app-listado-generico [listado]="rubroList">
+  <ng-container contenido>
+    @for(rubro of rubroList; track $index) {
+    <div>
+      <p>{{$index+1}} - {{ rubro.nombre }}</p>
+    </div>
+    }
+  </ng-container>
+</app-listado-generico>

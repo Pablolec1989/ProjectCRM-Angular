@@ -15,6 +15,10 @@ import { ListadoTipoTelefonoComponent } from './features/tipoTelefono/listado-ti
 import { IndiceTipoTelefonoComponent } from './features/tipoTelefono/indice-tipoTelefono/indice-tipoTelefono.component';
 import { CrearTipoTelefonoComponent } from './features/tipoTelefono/crear-tipoTelefono/crear-tipoTelefono.component';
 import { EditarTipoTelefonoComponent } from './features/tipoTelefono/editar-tipoTelefono/editar-tipoTelefono.component';
+import { ListaRubroComponent } from './features/rubro/lista-rubro/lista-rubro.component';
+import { IndiceRubroComponent } from './features/rubro/indice-rubro/indice-rubro.component';
+import { CrearRubroComponent } from './features/rubro/crear-rubro/crear-rubro.component';
+import { EditarRubroComponent } from './features/rubro/editar-rubro/editar-rubro.component';
 
 export const routes: Routes = [
   {
@@ -51,6 +55,15 @@ export const routes: Routes = [
       {path: 'listado', component: IndiceTipoTelefonoComponent},
       {path: 'crear', component: CrearTipoTelefonoComponent},
       {path: 'editar/:id', component: EditarTipoTelefonoComponent},
+    ]
+  },
+  {
+    path: 'rubros',
+    children: [
+      { path: '', component: ListaRubroComponent },
+      { path: 'listado', component: IndiceRubroComponent },
+      { path: 'crear', component: CrearRubroComponent },
+      { path: 'editar/:id', component: EditarRubroComponent }
     ]
   }
 
