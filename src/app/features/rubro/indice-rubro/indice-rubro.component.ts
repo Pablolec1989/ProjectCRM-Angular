@@ -1,19 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
 import { IndiceGenericoComponent } from "src/app/shared/components/indice-generico/indice-generico.component";
 import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provider';
-import { CondicionIvaService } from '../condicionIva.service';
+import { RubroService } from '../rubro.service';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-indice-condicion-iva',
+  selector: 'app-indice-rubro',
   standalone: true,
   imports: [
     CommonModule,
     IndiceGenericoComponent
 ],
-  templateUrl: './indice-condicionIva.component.html',
+  templateUrl: './indice-rubro.component.html',
   providers: [
-    { provide: GENERIC_SERVICE_TOKEN, useClass: CondicionIvaService }
+    { provide: GENERIC_SERVICE_TOKEN, useClass: RubroService }
   ]
 })
-export class IndiceCondicionIvaComponent { }
+export class IndiceRubroComponent { }

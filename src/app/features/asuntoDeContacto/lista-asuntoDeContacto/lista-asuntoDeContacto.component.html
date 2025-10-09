@@ -1,0 +1,9 @@
+<app-listado-generico [listado]="asuntosDeContacto">
+  <ng-container contenido>
+    @for(asunto of asuntosDeContacto; track $index) {
+    <div>
+      <p>{{$index+1}} - {{asunto.nombre}}</p>
+    </div>
+    }
+  </ng-container>
+</app-listado-generico>

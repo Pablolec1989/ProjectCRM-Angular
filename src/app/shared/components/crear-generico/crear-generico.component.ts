@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { IServiceBase } from "../../interfaces/IServiceBase";
 import { MostrarErroresComponent } from "../mostrar-errores/mostrar-errores.component";
 import { GENERIC_SERVICE_TOKEN } from "../povider/provider";
-import { extractErrors } from "../functions/extractErrorsFromAPI";
+import { extractErrorsFromApi } from "../functions/extractErrorsFromAPI";
 import { TipoTelefonoService } from "src/app/features/tipoTelefono/tipoTelefono.service";
 
 @Component({
@@ -14,9 +14,6 @@ import { TipoTelefonoService } from "src/app/features/tipoTelefono/tipoTelefono.
     MostrarErroresComponent
 ],
   templateUrl: './crear-generico.component.html',
-  providers: [{
-      provide: GENERIC_SERVICE_TOKEN, useClass: TipoTelefonoService
-    }]
 })
 export class CrearGenericoComponent<TDTO, TRequestDTO> implements AfterViewInit {
   ngAfterViewInit(): void {
@@ -44,7 +41,7 @@ export class CrearGenericoComponent<TDTO, TRequestDTO> implements AfterViewInit 
         this.router.navigate([this.rutaIndice]);
       },
       error: err => {
-        const errores = extractErrors(err);
+        const errores = extractErrorsFromApi(err);
         this.errores = errores;
       }
     });
