@@ -1,0 +1,9 @@
+<app-listado-generico [listado]="empresasList">
+  <ng-container contenido>
+    @for (empresa of empresasList; track $index) {
+    <div>
+      <p>{{$index + 1}} - {{empresa.razonSocial}}</p>
+    </div>
+    }
+  </ng-container>
+</app-listado-generico>
