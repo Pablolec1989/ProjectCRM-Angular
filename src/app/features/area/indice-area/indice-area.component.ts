@@ -2,6 +2,7 @@ import { Component, inject } from "@angular/core";
 import { AreaService } from "../area.service";
 import { GENERIC_SERVICE_TOKEN } from "src/app/shared/components/povider/provider";
 import { IndiceGenericoComponent } from "src/app/shared/components/indice-generico/indice-generico.component";
+import { TablaColumna } from "src/app/shared/components/models/tabla-columna";
 
 @Component({
     selector: 'app-indice-area',

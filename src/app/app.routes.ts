@@ -27,6 +27,10 @@ import { ListaRolComponent } from './features/rol/lista-rol/lista-rol.component'
 import { CrearRolComponent } from './features/rol/crear-rol/crear-rol.component';
 import { EditarRolComponent } from './features/rol/editar-rol/editar-rol.component';
 import { IndiceRolComponent } from './features/rol/indice-rol/indice-rol.component';
+import { ListaEmpresaComponent } from './features/empresa/lista-empresa/lista-empresa.component';
+import { IndiceEmpresaComponent } from './features/empresa/indice-empresa/indice-empresa.component';
+import { CrearEmpresaComponent } from './features/empresa/crear-empresa/crear-empresa.component';
+import { EditarEmpresaComponent } from './features/empresa/editar-empresa/editar-empresa.component';
 
 export const routes: Routes = [
   {
@@ -90,6 +94,15 @@ export const routes: Routes = [
       { path: 'listado', component: IndiceRolComponent },
       { path: 'crear', component: CrearRolComponent },
       { path: 'editar/:id', component: EditarRolComponent }
+    ]
+  },
+  {
+    path: 'empresa',
+    children: [
+      { path: '', component: ListaEmpresaComponent },
+      { path: 'listado', component: IndiceEmpresaComponent },
+      { path: 'crear', component: CrearEmpresaComponent },
+      { path: 'editar/:id', component: EditarEmpresaComponent }
     ]
   }
 

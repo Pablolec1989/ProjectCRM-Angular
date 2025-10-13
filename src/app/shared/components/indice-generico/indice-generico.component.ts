@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 import { MostrarErroresComponent } from "../mostrar-errores/mostrar-errores.component";
 import { GENERIC_SERVICE_TOKEN } from '../povider/provider';
 import { extractErrorsFromApi } from '../functions/extractErrorsFromAPI';
-import { TipoDireccionService } from 'src/app/features/tipoDireccion/tipoDireccion.service';
+import { TablaColumna } from '../models/tabla-columna';
 
 @Component({
     selector: 'app-indice-generico',
@@ -34,7 +34,7 @@ export class IndiceGenericoComponent<TDTO, TRequestDTO> {
   @Input({ required: true }) titulo!: string;
   @Input({ required: true }) rutaCrear!: string;
   @Input({ required: true }) rutaEditar!: string;
-  @Input() columnasAMostrar: string[] = ['nombre', 'acciones'];
+  @Input() columnas: TablaColumna[] = [];
   entities!: TDTO[];
   errores: string[] = [];
 
@@ -52,8 +52,18 @@ export class IndiceGenericoComponent<TDTO, TRequestDTO> {
         this.errores = errores;
       }
     })
-
   }
+
+  get columnasAMostrar(): string[] {
+    return [...this.columnasDefinidas.map(c => c.key), 'acciones'];
+  }
+
+  get columnasDefinidas(): TablaColumna[] {
+  return (this.columnas && this.columnas.length > 0)
+    ? this.columnas
+    : TablaColumna.default();
+  }
+
 
   confirmarEliminacion(id: string): void {
     Swal.fire({
