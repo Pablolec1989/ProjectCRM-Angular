@@ -9,16 +9,14 @@ export interface empresaDTO {
 export interface empresaRequestDTO {
   razonSocial: string;
   cuit: string;
-  cuil: string;
   rubroId: string;
   condicionIvaId: string;
 }
 
 export interface empresaDetailDTO extends empresaDTO {
   cuit: string;
-  cuil: string;
   rubro: rubroDTO;
   condicionIva: condicionIvaDTO;
 };
-  
+
 

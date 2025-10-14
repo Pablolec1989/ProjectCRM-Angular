@@ -1,0 +1,29 @@
+<form [formGroup]="form" (ngSubmit)="guardarCambios()">
+  <mat-form-field>
+    <mat-label>Razón Social</mat-label>
+    <input matInput formControlName="razonSocial">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>CUIT</mat-label>
+    <input matInput formControlName="cuit">{{model?.cuit}}
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Rubro</mat-label>
+    <mat-select formControlName="rubroId">
+      <mat-option *ngFor="let rubro of rubros" [value]="rubro.id">{{ rubro.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Condición IVA</mat-label>
+    <mat-select formControlName="condicionIvaId">
+      <mat-option *ngFor="let cond of condicionesIva" [value]="cond.id">{{ cond.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+    Guardar
+  </button>
+</form>

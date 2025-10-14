@@ -5,7 +5,6 @@ import { IServiceBase } from "../../interfaces/IServiceBase";
 import { MostrarErroresComponent } from "../mostrar-errores/mostrar-errores.component";
 import { GENERIC_SERVICE_TOKEN } from "../povider/provider";
 import { extractErrorsFromApi } from "../functions/extractErrorsFromAPI";
-import { TipoTelefonoService } from "src/app/features/tipoTelefono/tipoTelefono.service";
 
 @Component({
     selector: 'app-crear-generico',
@@ -16,13 +15,22 @@ import { TipoTelefonoService } from "src/app/features/tipoTelefono/tipoTelefono.
   templateUrl: './crear-generico.component.html',
 })
 export class CrearGenericoComponent<TDTO, TRequestDTO> implements AfterViewInit {
-  ngAfterViewInit(): void {
-    this.componentRef = this.contenedorFormulario.createComponent(this.formulario);
-    this.componentRef.instance.posteoFormulario.subscribe((entity: any) => {
-      this.guardarCambios(entity);
-    })
+ngAfterViewInit() {
+  this.componentRef = this.contenedorFormulario.createComponent(this.formulario);
+
+  // Solo asigna formInputs si existen
+  if (this.formInputs !== undefined) {
+    Object.entries(this.formInputs).forEach(([key, value]) => {
+      this.componentRef.instance[key] = value;
+    });
   }
 
+  this.componentRef.instance.posteoFormulario.subscribe((entity: any) => {
+    this.guardarCambios(entity);
+  });
+}
+
+  @Input() formInputs?: any;
   @Input({ required: true }) titulo!: string;
   @Input({ required: true }) rutaIndice!: string;
   @Input({ required: true }) formulario!: any;
@@ -33,7 +41,7 @@ export class CrearGenericoComponent<TDTO, TRequestDTO> implements AfterViewInit 
   @ViewChild('contenedorFormulario', { read: ViewContainerRef, static: true })
   contenedorFormulario!: ViewContainerRef;
   private componentRef!: ComponentRef<any>;
-  errores : string[] = [];
+  errors : string[] = [];
 
   guardarCambios(entity: TRequestDTO) {
     this.genericService.post(entity).subscribe({
@@ -42,7 +50,7 @@ export class CrearGenericoComponent<TDTO, TRequestDTO> implements AfterViewInit 
       },
       error: err => {
         const errores = extractErrorsFromApi(err);
-        this.errores = errores;
+        this.errors = errores;
       }
     });
   }

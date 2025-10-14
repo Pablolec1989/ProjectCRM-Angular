@@ -1,1 +1,4 @@
-<p>editar-empresa works!</p>,
+@if (rubros.length && condicionesIva.length && empresa) {
+<app-editar-generico [id]="id" titulo="Editar Empresa" rutaIndice="/empresa/listado" [formulario]="formularioEmpresa"
+  [formInputs]="formInputs"></app-editar-generico>
+}

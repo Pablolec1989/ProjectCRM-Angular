@@ -15,7 +15,13 @@ import { LoadingComponent } from "../../loading/loading.component";
   templateUrl: './editar-generico.component.html',
 })
 export class EditarGenericoComponent<TDTO, TRequestDTO> implements OnInit {
-  
+
+  @Input() id!: string;
+  @Input({ required: true }) titulo!: string;
+  @Input({ required: true }) rutaIndice!: string;
+  @Input({ required: true }) formulario!: any;
+  @Input() formInputs: any;
+
   ngOnInit(): void {
     this.genericService.getById(this.id)
       .subscribe((entity) => {
@@ -26,19 +32,21 @@ export class EditarGenericoComponent<TDTO, TRequestDTO> implements OnInit {
   cargarComponente(entity: any) {
     if (this.contenedorFormulario) {
       this.componentRef = this.contenedorFormulario.createComponent(this.formulario);
+
+      if (this.formInputs) {
+        Object.entries(this.formInputs).forEach(([key, value]) => {
+          this.componentRef.instance[key] = value;
+        });
+      }
+
       this.componentRef.instance.model = entity;
       this.componentRef.instance.posteoFormulario.subscribe((entity: any) => {
         this.guardarCambios(entity);
-      })
+      });
 
       this.cargando = false;
     }
   }
-
-  @Input() id!: string;
-  @Input({ required: true }) titulo!: string;
-  @Input({ required: true }) rutaIndice!: string;
-  @Input({ required: true }) formulario!: any;
 
   genericService = inject(GENERIC_SERVICE_TOKEN) as IServiceBase<TDTO, TRequestDTO>;
   private readonly router = inject(Router);
