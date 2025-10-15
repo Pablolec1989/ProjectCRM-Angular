@@ -1,0 +1,31 @@
+<form (submit)="guardarCambios()" [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Razon Social</mat-label>
+    <input matInput [formControl]="form.controls.razonSocial" />
+    <mat-error>{{obtenerErrorCampoRazonSocial()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Cuit</mat-label>
+    <input matInput [formControl]="form.controls.cuit">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Rubro</mat-label>
+    <mat-select [formControl]="form.controls.rubroId">
+      @for (rubro of rubros; track $index) {
+      <mat-option [value]="rubro.id">{{rubro.nombre}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Condicion Iva</mat-label>
+    <mat-select [formControl]="form.controls.condicionIvaId">
+      @for (condicionIva of condicionesIva; track $index) {
+      <mat-option [value]="condicionIva.id">{{condicionIva.nombre}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <div>
+    <button mat-flat-button type="submit" (click)="guardarCambios()" [disabled]="form.invalid">Guardar cambios</button>
+    <a mat-stroked-button routerLink="/empresa/listado">Cancelar</a>
+  </div>
+</form>

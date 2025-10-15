@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provider';
 import { EmpresaService } from '../empresa.service';
 import { empresaDTO, empresaRequestDTO } from '../models/empresa.model';
 import { extractErrorsFromApi } from 'src/app/shared/components/functions/extractErrorsFromAPI';
 import { ListadoGenericoComponent } from "src/app/shared/components/listado-generico/listado-generico.component";
 import { IServiceBase } from 'src/app/shared/interfaces/IServiceBase';
+import { EMPRESA_SERVICE_TOKEN } from '../empresa.provider';
+import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provider';
 
 @Component({
   selector: 'app-lista-empresa',
@@ -20,11 +21,11 @@ import { IServiceBase } from 'src/app/shared/interfaces/IServiceBase';
   ]
 })
 export class ListaEmpresaComponent implements OnInit {
-  
+
   private readonly empresaService = inject(GENERIC_SERVICE_TOKEN) as IServiceBase<empresaDTO, empresaRequestDTO>;
   empresasList: empresaDTO[] = [];
   errors: string[] = [];
-  
+
   ngOnInit(): void {
     this.empresaService.getAll().subscribe({
       next: (response) => {
@@ -34,8 +35,8 @@ export class ListaEmpresaComponent implements OnInit {
       error: (err) => {
         this.errors = err;
         extractErrorsFromApi(err);
-      }  
+      }
     })
   }
-  
+
 }

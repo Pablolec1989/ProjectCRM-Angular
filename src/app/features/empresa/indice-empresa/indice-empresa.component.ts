@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { IndiceGenericoComponent } from "src/app/shared/components/indice-generico/indice-generico.component";
-import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provider';
 import { EmpresaService } from '../empresa.service';
 import { TablaColumna } from '../../../shared/components/models/tabla-columna';
+import { EMPRESA_SERVICE_TOKEN } from '../empresa.provider';
+import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provider';
 
 @Component({
   selector: 'app-indice-empresa',

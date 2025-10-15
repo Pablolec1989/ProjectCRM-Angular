@@ -1,1 +1,10 @@
-<p>editar-empresa works!</p>,
+<h2>Editar Empresa</h2>
+@if(empresa){
+<app-mostrar-errores [errores]="errors"></app-mostrar-errores>
+<app-form-empresa [model]="empresa" (posteoFormulario)="guardarCambios($event)"></app-form-empresa>
+
+} @else {
+
+<app-cargando></app-cargando>
+
+}
