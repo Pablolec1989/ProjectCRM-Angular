@@ -1,68 +1,59 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
-import { condicionIvaDTO } from '../../condicionIva/models/condicionIva.models';
-import { rubroDTO, rubroRequestDTO } from '../../rubro/models/rubro.model';
+import { MatInputModule } from "@angular/material/input";
+import { MatButtonModule } from "@angular/material/button";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { RUBRO_SERVICE_TOKEN } from "../../rubro/rubro.provider";
+import { MatSelectModule } from "@angular/material/select";
+import { RubroService } from "../../rubro/rubro.service";
+import { CONDICION_IVA_SERVICE_TOKEN } from "../../condicionIva/condicionIva.provider";
+import { CondicionIvaService } from "../../condicionIva/condicionIva.service";
+import { EMPRESA_SERVICE_TOKEN } from "../empresa.provider";
 import { EmpresaService } from '../empresa.service';
+import { IEmpresaService } from "../IEmpresaService";
+import { empresaRequestDTO } from "../models/empresa.model";
 import { FormEmpresaComponent } from "../form-empresa/form-empresa.component";
-import { CrearGenericoComponent } from "src/app/shared/components/crear-generico/crear-generico.component";
-import { CondicionIvaService } from '../../condicionIva/condicionIva.service';
-import { RubroService } from '../../rubro/rubro.service';
-import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provider';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { EMPRESA_SERVICE_TOKEN } from '../empresa.provider';
-import { IServiceBase } from 'src/app/shared/interfaces/IServiceBase';
-import { RUBRO_SERVICE_TOKEN } from '../../rubro/rubro.provider';
-import { CONDICION_IVA_SERVICE_TOKEN } from '../../condicionIva/condicionIva.provider';
+import { Component, inject } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
+import { Router } from "@angular/router";
+import { extractErrorsFromApi } from "src/app/shared/components/functions/extractErrorsFromAPI";
+
 
 @Component({
   selector: 'app-crear-empresa',
   standalone: true,
   imports: [
-    CommonModule,
-    CrearGenericoComponent
-  ],
+    MatButtonModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule,
+    FormEmpresaComponent
+],
   templateUrl: './crear-empresa.component.html',
   providers: [
-    { provide: GENERIC_SERVICE_TOKEN, useClass: EmpresaService },
+    { provide: EMPRESA_SERVICE_TOKEN, useClass: EmpresaService },
     { provide: RUBRO_SERVICE_TOKEN, useClass: RubroService },
     { provide: CONDICION_IVA_SERVICE_TOKEN, useClass: CondicionIvaService },
   ]
 })
 export class CrearEmpresaComponent {
 
-  formularioEmpresa = FormEmpresaComponent;
+  private router = inject(Router);
+  empresaService = inject(EMPRESA_SERVICE_TOKEN) as IEmpresaService
+  errors: string[] = [];
 
-  condicionIvaService = inject(CondicionIvaService);
-  rubroService = inject(RubroService);
+  guardarCambios(empresa: empresaRequestDTO) {
+    console.log(empresa);
+    this.empresaService.post(empresa).subscribe({
+      next: () => {
+        this.router.navigate(['/empresa/listado']);
+      },
+      error: (err) => {
+        const errores = extractErrorsFromApi(err);
+        this.errors = errores;
 
-  rubros: rubroDTO[] = [];
-  condicionesIva: condicionIvaDTO[] = [];
-  formInputs: any = {};
+        }
 
-  ngOnInit() {
-    this.cargarDatos();
-  }
-
-  cargarDatos(): void {
-    this.rubroService.getAll().subscribe((data) => {
-      this.rubros = data;
-      this.actualizarFormInputs();
-    });
-    this.condicionIvaService.getAll().subscribe((data) => {
-      this.condicionesIva = data;
-      this.actualizarFormInputs();
-    });
-  }
-
-  actualizarFormInputs() {
-    // Solo actualiza si ambos combos están listos
-    if (this.rubros.length && this.condicionesIva.length) {
-      this.formInputs = {
-        rubros: this.rubros,
-        condicionesIva: this.condicionesIva
-      };
-    }
+    })
   }
 
 
