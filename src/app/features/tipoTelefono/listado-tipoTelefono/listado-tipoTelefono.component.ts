@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provider';
 import { TipoTelefonoService } from '../tipoTelefono.service';
 import { IServiceBase } from 'src/app/shared/interfaces/IServiceBase';
-import { extractErrors } from 'src/app/shared/components/functions/extractErrorsFromAPI';
+import { extractErrorsFromApi } from 'src/app/shared/components/functions/extractErrorsFromAPI';
 import { ListadoGenericoComponent } from "src/app/shared/components/listado-generico/listado-generico.component";
 import { tipoTelefonoDTO } from '../models/tipoTelefono.model';
 
@@ -32,7 +32,7 @@ export class ListadoTipoTelefonoComponent implements OnInit {
       },
       error: (err) => { 
         this.errors = err;
-        extractErrors(err);
+        extractErrorsFromApi(err);
 
       }
     })

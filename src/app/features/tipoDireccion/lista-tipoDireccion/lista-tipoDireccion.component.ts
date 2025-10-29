@@ -4,7 +4,7 @@ import { ListadoGenericoComponent } from "src/app/shared/components/listado-gene
 import { TipoDireccionService } from '../tipoDireccion.service';
 import { MatButtonModule } from '@angular/material/button';
 import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provider';
-import { extractErrors } from 'src/app/shared/components/functions/extractErrorsFromAPI';
+import { extractErrorsFromApi } from 'src/app/shared/components/functions/extractErrorsFromAPI';
 import { IServiceBase } from 'src/app/shared/interfaces/IServiceBase';
 import { tipoDireccionDTO, tipoDireccionRequestDTO } from '../models/tipoDireccion.model';
 
@@ -33,7 +33,7 @@ export class ListaTipoDireccionComponent implements OnInit
       },
       error: (err) => {
         this.errors = err;
-        extractErrors(err);
+        extractErrorsFromApi(err);
       }
     });
   }

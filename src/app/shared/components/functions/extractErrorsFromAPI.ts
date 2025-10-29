@@ -1,4 +1,4 @@
-export function extractErrors(object: any): string[] {
+export function extractErrorsFromApi(object: any): string[] {
   const error = object.console.error.errors;
 
   let errorMessages: string[] = [];

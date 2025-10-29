@@ -12,6 +12,8 @@ import { CondicionIvaService } from '../condicionIva.service';
     IndiceGenericoComponent
 ],
   templateUrl: './indice-condicionIva.component.html',
-  providers: [{provide: GENERIC_SERVICE_TOKEN, useClass: CondicionIvaService}]
+  providers: [
+    { provide: GENERIC_SERVICE_TOKEN, useClass: CondicionIvaService }
+  ]
 })
 export class IndiceCondicionIvaComponent { }

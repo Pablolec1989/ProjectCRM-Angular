@@ -3,9 +3,10 @@ import { Component, inject, OnInit, Output } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { ListadoGenericoComponent } from "src/app/shared/components/listado-generico/listado-generico.component";
 import { AreaService } from "../area.service";
-import { areaDTO } from '../models/area.model';
+import { areaDTO, areaRequestDTO } from '../models/area.model';
 import { GENERIC_SERVICE_TOKEN } from "src/app/shared/components/povider/provider";
-import { extractErrors } from "src/app/shared/components/functions/extractErrorsFromAPI";
+import { extractErrorsFromApi } from "src/app/shared/components/functions/extractErrorsFromAPI";
+import { IServiceBase } from "src/app/shared/interfaces/IServiceBase";
 
 @Component({
     selector: 'app-listado-area',
@@ -20,18 +21,18 @@ import { extractErrors } from "src/app/shared/components/functions/extractErrors
 })
 export class ListadoAreaComponent
 {
-  private readonly tipoDireccionService = inject(AreaService)
+  private readonly areaService = inject(GENERIC_SERVICE_TOKEN) as IServiceBase<areaDTO, areaRequestDTO>;
   areas: areaDTO[] = [];
   errors: string[] = [];
 
   ngOnInit(): void {
-    this.tipoDireccionService.getAll().subscribe({
+    this.areaService.getAll().subscribe({
       next: (areas) => {
         this.areas = areas;
       },
       error: (err) => {
         this.errors = err;
-        extractErrors(err);
+        extractErrorsFromApi(err);
       }
     });
   }

@@ -4,7 +4,7 @@ import { ListadoGenericoComponent } from "src/app/shared/components/listado-gene
 import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provider';
 import { CondicionIvaService } from '../condicionIva.service';
 import { IServiceBase } from 'src/app/shared/interfaces/IServiceBase';
-import { extractErrors } from 'src/app/shared/components/functions/extractErrorsFromAPI';
+import { extractErrorsFromApi } from 'src/app/shared/components/functions/extractErrorsFromAPI';
 import { condicionIvaDTO, condicionIvaRequestDTO } from '../models/condicionIva.models';
 
 @Component({
@@ -32,7 +32,7 @@ export class ListaCondicionIvaComponent implements OnInit {
       },
       error: (err) => {
         this.errors = err;
-        extractErrors(err);
+        extractErrorsFromApi(err);
       }
     });
   }
