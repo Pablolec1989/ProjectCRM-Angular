@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { rolDTO, rolRequestDTO } from './models/rol.model';
+import { rolDTO, rolRequestDTO } from './rol.model';
 import { ServiceBase } from 'src/app/shared/ServiceBase.service';
 
 @Injectable({
@@ -7,8 +7,8 @@ import { ServiceBase } from 'src/app/shared/ServiceBase.service';
 })
 export class RolService extends ServiceBase<rolDTO, rolRequestDTO> {
 
-  constructor() { 
-    super('Roles')
+  constructor() {
+    super("Roles");
   }
 
 }

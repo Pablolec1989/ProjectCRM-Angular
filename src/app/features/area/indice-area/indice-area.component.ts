@@ -3,6 +3,7 @@ import { AreaService } from "../area.service";
 import { GENERIC_SERVICE_TOKEN } from "src/app/shared/components/povider/provider";
 import { IndiceGenericoComponent } from "src/app/shared/components/indice-generico/indice-generico.component";
 import { TablaColumna } from "src/app/shared/components/models/tabla-columna";
+import { AREA_SERVICE_TOKEN } from "../area.provider";
 
 @Component({
     selector: 'app-indice-area',
@@ -10,7 +11,7 @@ import { TablaColumna } from "src/app/shared/components/models/tabla-columna";
     templateUrl: './indice-area.component.html',
     providers: [{ provide: GENERIC_SERVICE_TOKEN, useClass: AreaService }]
 })
-export class IndiceAreaComponent
-{
+export class IndiceAreaComponent {
+
 
 }

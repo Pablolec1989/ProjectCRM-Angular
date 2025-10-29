@@ -1,0 +1,9 @@
+<app-listado-generico [listado]="usuarios">
+  <ng-container contenido>
+    @for (usuario of usuarios; track $index) {
+    <div>
+      <p>{{$index + 1}} - {{usuario.nombre}} {{usuario.apellido}} </p>
+    </div>
+    }
+  </ng-container>
+</app-listado-generico>

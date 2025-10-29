@@ -1,9 +1,10 @@
 <app-listado-generico [listado]="roles">
   <ng-container contenido>
-    @for (rol of roles; track $index) {
+    @for(rol of roles; track $index) {
     <div>
-      <p>{{$index + 1}} - {{rol.nombre}}</p>
+      <p>{{$index+1}} - {{rol.nombre}}</p>
     </div>
     }
+
   </ng-container>
 </app-listado-generico>

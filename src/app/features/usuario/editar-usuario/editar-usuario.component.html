@@ -1,0 +1,10 @@
+<h2>Editar Usuario</h2>
+@if(usuario){
+<app-mostrar-errores [errores]="errors"></app-mostrar-errores>
+<app-form-usuario [model]="usuario" (posteoFormulario)="guardarCambios($event)"></app-form-usuario>
+
+} @else {
+
+<app-cargando></app-cargando>
+
+}

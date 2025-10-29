@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, InjectionToken, Injector, Input, OnInit, Type } from '@angular/core';
 import { ListadoGenericoComponent } from "../listado-generico/listado-generico.component";
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
@@ -10,6 +10,7 @@ import { MostrarErroresComponent } from "../mostrar-errores/mostrar-errores.comp
 import { GENERIC_SERVICE_TOKEN } from '../povider/provider';
 import { extractErrorsFromApi } from '../functions/extractErrorsFromAPI';
 import { TablaColumna } from '../models/tabla-columna';
+import { ServiceBase } from '../../ServiceBase.service';
 
 @Component({
     selector: 'app-indice-generico',
@@ -27,18 +28,17 @@ import { TablaColumna } from '../models/tabla-columna';
   providers: [
     ]
 })
-export class IndiceGenericoComponent<TDTO, TRequestDTO> {
+export class IndiceGenericoComponent<TDTO, TRequestDTO> implements OnInit {
 
-  private readonly genericService = inject(GENERIC_SERVICE_TOKEN) as IServiceBase<TDTO, TRequestDTO>;
-
+  private genericService = inject(GENERIC_SERVICE_TOKEN) as IServiceBase<TDTO, TRequestDTO>;
   @Input({ required: true }) titulo!: string;
   @Input({ required: true }) rutaCrear!: string;
   @Input({ required: true }) rutaEditar!: string;
   @Input() columnas: TablaColumna[] = [];
   entities!: TDTO[];
-  errores: string[] = [];
+  errors: string[] = [];
 
-  constructor() {
+  ngOnInit(){
     this.loadData();
   }
 
@@ -49,7 +49,7 @@ export class IndiceGenericoComponent<TDTO, TRequestDTO> {
       },
       error: error => {
         const errores = extractErrorsFromApi(error);
-        this.errores = errores;
+        this.errors = errores;
       }
     })
   }
@@ -82,7 +82,7 @@ export class IndiceGenericoComponent<TDTO, TRequestDTO> {
           },
           error: (err) => {
             Swal.fire('Error', 'No se pudo eliminar el registro.', 'error');
-            this.errores=err;
+            this.errors=err;
           },
         });
       }

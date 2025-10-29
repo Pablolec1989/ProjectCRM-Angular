@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IndiceGenericoComponent } from "src/app/shared/components/indice-generico/indice-generico.component";
 import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provider';
 import { CondicionIvaService } from '../condicionIva.service';
+import { CONDICION_IVA_SERVICE_TOKEN } from '../condicionIva.provider';
 
 @Component({
   selector: 'app-indice-condicion-iva',
@@ -16,4 +17,6 @@ import { CondicionIvaService } from '../condicionIva.service';
     { provide: GENERIC_SERVICE_TOKEN, useClass: CondicionIvaService }
   ]
 })
-export class IndiceCondicionIvaComponent { }
+export class IndiceCondicionIvaComponent { 
+
+}

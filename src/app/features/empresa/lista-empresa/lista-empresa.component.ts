@@ -17,24 +17,23 @@ import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provide
 ],
   templateUrl: './lista-empresa.component.html',
   providers: [
-    {provide: GENERIC_SERVICE_TOKEN, useClass: EmpresaService }
+    {provide: EMPRESA_SERVICE_TOKEN, useClass: EmpresaService }
   ]
 })
 export class ListaEmpresaComponent implements OnInit {
 
-  private readonly empresaService = inject(GENERIC_SERVICE_TOKEN) as IServiceBase<empresaDTO, empresaRequestDTO>;
+  private readonly empresaService = inject(EMPRESA_SERVICE_TOKEN);
   empresasList: empresaDTO[] = [];
   errors: string[] = [];
 
   ngOnInit(): void {
     this.empresaService.getAll().subscribe({
       next: (response) => {
-        console.log(response);
         this.empresasList = response;
       },
       error: (err) => {
-        this.errors = err;
-        extractErrorsFromApi(err);
+        const errores = extractErrorsFromApi(err);
+        this.errors = errores;
       }
     })
   }
