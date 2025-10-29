@@ -15,6 +15,7 @@ import { Component, inject } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { extractErrorsFromApi } from "src/app/shared/components/functions/extractErrorsFromAPI";
+import { MostrarErroresComponent } from "src/app/shared/components/mostrar-errores/mostrar-errores.component";
 
 
 @Component({
@@ -26,7 +27,8 @@ import { extractErrorsFromApi } from "src/app/shared/components/functions/extrac
     ReactiveFormsModule,
     MatInputModule,
     MatSelectModule,
-    FormEmpresaComponent
+    FormEmpresaComponent,
+    MostrarErroresComponent
 ],
   templateUrl: './crear-empresa.component.html',
   providers: [
@@ -38,11 +40,10 @@ import { extractErrorsFromApi } from "src/app/shared/components/functions/extrac
 export class CrearEmpresaComponent {
 
   private router = inject(Router);
-  empresaService = inject(EMPRESA_SERVICE_TOKEN) as IEmpresaService
+  empresaService = inject(EMPRESA_SERVICE_TOKEN);
   errors: string[] = [];
 
   guardarCambios(empresa: empresaRequestDTO) {
-    console.log(empresa);
     this.empresaService.post(empresa).subscribe({
       next: () => {
         this.router.navigate(['/empresa/listado']);

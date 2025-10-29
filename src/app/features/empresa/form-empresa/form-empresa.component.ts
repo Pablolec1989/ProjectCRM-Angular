@@ -5,19 +5,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { empresaDetailDTO, empresaRequestDTO } from '../models/empresa.model';
 import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core';
-import { condicionIvaDTO, condicionIvaRequestDTO } from '../../condicionIva/models/condicionIva.models';
-import { rubroDTO, rubroRequestDTO } from '../../rubro/models/rubro.model';
-import { Router, RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provider';
+import { condicionIvaDTO } from '../../condicionIva/models/condicionIva.models';
+import { rubroDTO } from '../../rubro/models/rubro.model';
 import { EmpresaService } from '../empresa.service';
 import { errorCampoObligatorio } from 'src/app/shared/components/functions/errorCampoObligatorio';
-import { IServiceBase } from 'src/app/shared/interfaces/IServiceBase';
 import { CONDICION_IVA_SERVICE_TOKEN } from '../../condicionIva/condicionIva.provider';
 import { RUBRO_SERVICE_TOKEN } from '../../rubro/rubro.provider';
 import { EMPRESA_SERVICE_TOKEN } from '../empresa.provider';
-import { IEmpresaService } from '../IEmpresaService';
+import { RubroService } from '../../rubro/rubro.service';
+import { CondicionIvaService } from '../../condicionIva/condicionIva.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-form-empresa',
@@ -32,7 +29,9 @@ import { IEmpresaService } from '../IEmpresaService';
   ],
   templateUrl: './form-empresa.component.html',
   providers: [
-    { provide: GENERIC_SERVICE_TOKEN, useClass: EmpresaService }
+    { provide: EMPRESA_SERVICE_TOKEN, useClass: EmpresaService },
+    { provide: RUBRO_SERVICE_TOKEN, useClass: RubroService },
+    { provide: CONDICION_IVA_SERVICE_TOKEN, useClass: CondicionIvaService },
   ]
 })
 export class FormEmpresaComponent implements OnInit {
@@ -40,18 +39,16 @@ export class FormEmpresaComponent implements OnInit {
   @Output() posteoFormulario = new EventEmitter<empresaRequestDTO>()
   @Input() model:empresaDetailDTO | undefined
   private formbuilder = inject(FormBuilder);
-  empresaService = inject(EMPRESA_SERVICE_TOKEN) as IEmpresaService
-  rubroService = inject(RUBRO_SERVICE_TOKEN) as IServiceBase<rubroDTO, rubroRequestDTO>
-  condicionIvaService = inject(CONDICION_IVA_SERVICE_TOKEN) as IServiceBase<condicionIvaDTO, condicionIvaRequestDTO>
+  empresaService = inject(EMPRESA_SERVICE_TOKEN);
+  rubroService = inject(RUBRO_SERVICE_TOKEN);
+  condicionIvaService = inject(CONDICION_IVA_SERVICE_TOKEN);
 
   rubros: rubroDTO[] = [];
   condicionesIva: condicionIvaDTO[] = [];
 
   ngOnInit(): void {
-    console.log(this.model)
-
     if (this.model !== undefined) {
-      this.form.patchValue(this.model)
+      this.formEmpresa.patchValue(this.model)
     }
     //Asociar el rubro a la empresa
     this.rubroService.getAll().subscribe((data) => {
@@ -61,7 +58,7 @@ export class FormEmpresaComponent implements OnInit {
       const rubroAsociado = this.rubros
         .find(rubro => rubro.id === this.model!.rubro.id);
       if (rubroAsociado) {
-        this.form.get('rubroId')?.setValue(rubroAsociado.id);
+        this.formEmpresa.get('rubroId')?.setValue(rubroAsociado.id);
       }
     }
     });
@@ -73,13 +70,13 @@ export class FormEmpresaComponent implements OnInit {
       const condicionIvaAsociado = this.condicionesIva
         .find(condicionIva => condicionIva.id === this.model!.condicionIva.id);
       if (condicionIvaAsociado) {
-        this.form.get('condicionIvaId')?.setValue(condicionIvaAsociado.id);
+        this.formEmpresa.get('condicionIvaId')?.setValue(condicionIvaAsociado.id);
       }
       }
     });
   }
 
-  form = this.formbuilder.group({
+  formEmpresa = this.formbuilder.group({
     razonSocial: ['', {validators:[Validators.required]}],
     cuit: [''],
     rubroId: ['', { validators: [Validators.required] }],
@@ -87,15 +84,15 @@ export class FormEmpresaComponent implements OnInit {
   });
 
   guardarCambios() {
-    if (!this.form.valid) {
+    if (!this.formEmpresa.valid) {
       return;
     }
-    const empresa = this.form.value as empresaRequestDTO;
+    const empresa = this.formEmpresa.value as empresaRequestDTO;
     this.posteoFormulario.emit(empresa);
     }
 
   obtenerErrorCampoRazonSocial(): string {
-    let razonSocial = this.form.controls.razonSocial;
+    let razonSocial = this.formEmpresa.controls.razonSocial;
     if (razonSocial.hasError('required')) {
       return errorCampoObligatorio()
     }
@@ -103,7 +100,7 @@ export class FormEmpresaComponent implements OnInit {
   }
 
   obtenerErrorRubro(): string{
-    let rubro = this.form.controls.rubroId;
+    let rubro = this.formEmpresa.controls.rubroId;
     if (rubro.hasError('required')) {
       return errorCampoObligatorio()
     }

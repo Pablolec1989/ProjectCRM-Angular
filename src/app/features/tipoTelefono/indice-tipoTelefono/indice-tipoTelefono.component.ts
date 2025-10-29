@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IndiceGenericoComponent } from "src/app/shared/components/indice-generico/indice-generico.component";
 import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provider';
 import { TipoTelefonoService } from '../tipoTelefono.service';
+import { TIPO_TELEFONO_SERVICE_TOKEN } from '../tipoTelefono.provider';
 
 @Component({
   selector: 'app-indice-tipo-telefono',
@@ -16,4 +17,6 @@ import { TipoTelefonoService } from '../tipoTelefono.service';
     {provide: GENERIC_SERVICE_TOKEN, useClass: TipoTelefonoService}
   ]
 })
-export class IndiceTipoTelefonoComponent { }
+export class IndiceTipoTelefonoComponent { 
+
+}

@@ -23,14 +23,18 @@ import { ListaAsuntoDeContactoComponent } from './features/asuntoDeContacto/list
 import { IndiceAsuntoDeContactoComponent } from './features/asuntoDeContacto/indice-asuntoDeContacto/indice-asuntoDeContacto.component';
 import { CrearAsuntoDeContactoComponent } from './features/asuntoDeContacto/crear-asuntoDeContacto/crear-asuntoDeContacto.component';
 import { EditarAsuntoDeContactoComponent } from './features/asuntoDeContacto/editar-asuntoDeContacto/editar-asuntoDeContacto.component';
-import { ListaRolComponent } from './features/rol/lista-rol/lista-rol.component';
-import { CrearRolComponent } from './features/rol/crear-rol/crear-rol.component';
-import { EditarRolComponent } from './features/rol/editar-rol/editar-rol.component';
-import { IndiceRolComponent } from './features/rol/indice-rol/indice-rol.component';
 import { ListaEmpresaComponent } from './features/empresa/lista-empresa/lista-empresa.component';
 import { IndiceEmpresaComponent } from './features/empresa/indice-empresa/indice-empresa.component';
 import { CrearEmpresaComponent } from './features/empresa/crear-empresa/crear-empresa.component';
 import { EditarEmpresaComponent } from './features/empresa/editar-empresa/editar-empresa.component';
+import { ListaUsuarioComponent } from './features/usuario/listado-usuario/listado-usuario.component';
+import { IndiceUsuarioComponent } from './features/usuario/indice-usuario/indice-usuario.component';
+import { EditarUsuarioComponent } from './features/usuario/editar-usuario/editar-usuario.component';
+import { CrearUsuarioComponent } from './features/usuario/crear-usuario/crear-usuario.component';
+import { IndiceRolComponent } from './features/rol/indice-rol/indice-rol.component';
+import { CrearRolComponent } from './features/rol/crear-rol/crear-rol.component';
+import { ListaRolComponent } from './features/rol/lista-rol/lista-rol.component';
+import { EditarRolComponent } from './features/rol/editar-rol/editar-rol.component';
 
 export const routes: Routes = [
   {
@@ -88,21 +92,30 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'rol',
-    children: [
-      { path: '', component: ListaRolComponent },
-      { path: 'listado', component: IndiceRolComponent },
-      { path: 'crear', component: CrearRolComponent },
-      { path: 'editar/:id', component: EditarRolComponent }
-    ]
-  },
-  {
     path: 'empresa',
     children: [
       { path: '', component: ListaEmpresaComponent },
       { path: 'listado', component: IndiceEmpresaComponent },
       { path: 'crear', component: CrearEmpresaComponent },
       { path: 'editar/:id', component: EditarEmpresaComponent }
+    ]
+  },
+  {
+    path: 'usuario',
+    children: [
+      { path: '', component: ListaUsuarioComponent },
+      { path: 'listado', component: IndiceUsuarioComponent },
+      { path: 'crear', component: CrearUsuarioComponent },
+      { path: 'editar/:id', component: EditarUsuarioComponent }
+    ]
+  },
+  {
+    path: 'rol',
+    children: [
+      { path: '', component: ListaRolComponent },
+      { path: 'listado', component: IndiceRolComponent },
+      { path: 'crear', component: CrearRolComponent },
+      { path: 'editar/:id', component: EditarRolComponent },
     ]
   }
 

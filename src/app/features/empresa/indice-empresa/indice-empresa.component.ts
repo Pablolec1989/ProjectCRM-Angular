@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { IndiceGenericoComponent } from "src/app/shared/components/indice-generico/indice-generico.component";
 import { EmpresaService } from '../empresa.service';
 import { TablaColumna } from '../../../shared/components/models/tabla-columna';

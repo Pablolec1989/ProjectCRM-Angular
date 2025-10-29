@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { IndiceGenericoComponent } from "src/app/shared/components/indice-generico/indice-generico.component";
 import { GENERIC_SERVICE_TOKEN } from 'src/app/shared/components/povider/provider';
 import { RubroService } from '../rubro.service';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { RUBRO_SERVICE_TOKEN } from '../rubro.provider';
 
 @Component({
   selector: 'app-indice-rubro',
@@ -16,4 +17,6 @@ import { Component } from '@angular/core';
     { provide: GENERIC_SERVICE_TOKEN, useClass: RubroService }
   ]
 })
-export class IndiceRubroComponent { }
+export class IndiceRubroComponent { 
+
+}

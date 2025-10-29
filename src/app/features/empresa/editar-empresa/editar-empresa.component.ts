@@ -12,6 +12,7 @@ import { EMPRESA_SERVICE_TOKEN } from '../empresa.provider';
 import { Router } from '@angular/router';
 import { IEmpresaService } from '../IEmpresaService';
 import { LoadingComponent } from "src/app/shared/loading/loading.component";
+import { MostrarErroresComponent } from "src/app/shared/components/mostrar-errores/mostrar-errores.component";
 
 @Component({
   selector: 'app-editar-empresa',
@@ -19,8 +20,9 @@ import { LoadingComponent } from "src/app/shared/loading/loading.component";
   imports: [
     CommonModule,
     FormEmpresaComponent,
-    LoadingComponent
-  ],
+    LoadingComponent,
+    MostrarErroresComponent
+],
   templateUrl: './editar-empresa.component.html',
   providers: [
     { provide: EMPRESA_SERVICE_TOKEN, useClass: EmpresaService },
@@ -32,7 +34,7 @@ import { LoadingComponent } from "src/app/shared/loading/loading.component";
 export class EditarEmpresaComponent implements OnInit {
 
   private router = inject(Router);
-  empresaService = inject(EMPRESA_SERVICE_TOKEN) as IEmpresaService;
+  empresaService = inject(EMPRESA_SERVICE_TOKEN);
   errors: string[] = [];
 
   @Input() id!: string;
